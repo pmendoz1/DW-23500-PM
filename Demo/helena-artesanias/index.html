@@ -5,52 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helena Artesanias</title>
+    <link rel="stylesheet" href="./css/estilos.css">
 </head>
-<style>
-    body {
-      background-image: url('./img/fondo-main.png');
-    }
-</style>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="./index.html">Inicio</a>
-                </li>
-                <li>
-                    <a href="./pages/home.html">Nosotros</a>
-                </li>
-                <li>
-                    <a href="./pages/arte.html">Arte</a>
-                </li>
-                <li>
-                    <a href="./pages/taller.html">Taller</a>
-                </li>
-                <li>
-                    <a href="./pages/contacto.html">Contacto</a>
-                </li>
-            </ul>      
-        </nav>        
     </header>
-    <main>
-        <div id="principal">
+    <main class="main">
             <h1>Helena Artesanías</h1>
             <h2>Alfarería</h2>
-            <img src="./img/helena-logo.PNG" alt="logo-helena">
-            <form method="get" action="./pages/home.html">
-                <button type="submit">Ingresar</button>
-            </form>
+            <img class="main__div__fotos" src="./img/helena-logo.PNG" alt="logo-helena">
+            <br>
+        <div class="main__div__ingresar">
+            <a href="./pages/home.html">INGRESAR</a>
         </div>
         <div id="imagen-down">
-            <img src="./img/imagen-down.PNG" alt="imagen-down">
+            <img class="main__div__fotos--autofit" src="./img/imagen-down-transparent.png" alt="imagen-down">
         </div>
     </main>
-    <footer>
+    <footer class="footer">
+        <img class="footer__logos" src="./img/logo-insta-transparent.png" alt="">
         <span>HELENA.ARTESANIAS</span>
+        <img class="footer__logos" src="./img/logo-mail-transparent.png" alt="">
         <span>contacto@helena-artesanias.com.ar</span>
+        <img class="footer__logos" src="./img/logo-point-transparent.png" alt="">
         <span>Villa Bosch - Buenos Aires</span>
-        <span>Helena Artesanias © - Todos los derechos reservados</span>
+        <span class="footer__text--left">Helena Artesanias ©</span>
+        <span class="footer__text--left">Todos los derechos reservados</span>
     </footer>
 </body>
 </html>

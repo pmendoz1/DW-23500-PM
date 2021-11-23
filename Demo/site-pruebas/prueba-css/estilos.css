@@ -1,0 +1,52 @@
+nav ul{
+    display: inline;
+    position: fixed;
+}
+nav ul li{
+    display: inline;
+    top: 20px;
+}
+.forma{
+    margin: auto;
+    /*width: 300px;
+    height: 300px;*/
+    background-color: cadetblue;
+    overflow: visible;
+}
+.forma__cubo{
+    border-style: solid;
+    border-radius: 10%;
+    margin: auto;
+    padding: 15px;
+    width: 200px;
+    height: 200px;
+    background-color: tomato;
+}
+.forma_circulo{
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    background-color: chartreuse;
+}
+.forma__cubo--verde{
+    width: 200px;
+    height: 200px;
+    background-color: yellowgreen;
+    /*display: none; ---quita el elemento*/
+}
+.forma__cubo{
+    background-color:darkmagenta
+}
+.forma__cubo--miniatura{
+    margin-top: -50px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+    margin: -50px -10px 20px 30px;
+    background-color: chartreuse;
+    width: 100px;
+    height: 100px;
+    position:sticky;
+    top: 20px;
+    opacity: 20%;
+}

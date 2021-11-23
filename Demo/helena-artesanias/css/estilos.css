@@ -1,0 +1,145 @@
+/* Elementos HTML */
+body{
+    margin:0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url("../img/fondo-main.png");
+    background-size:cover
+}
+a:link{
+    color: #E5E5E5;
+    text-decoration: none;
+}
+a:visited{
+    color: #E5E5E5;
+    text-decoration: none;
+}
+a:hover{
+    color: #E5E5E5;
+    text-decoration: underline;
+}
+input:focus{
+    outline: none;
+}
+nav ul{
+    margin:0;
+    padding:0;
+}
+nav ul li{
+    display: inline;
+    margin: 0 60px;
+}
+div{
+    display: inline;
+    margin: 0 60px;
+}
+
+/* Definicion de Clases */
+
+.header__menu{
+    position:relative;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width:auto;
+    height: 43px;
+    background: #602749;
+    opacity: 0.3;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    color: #E5E5E5;
+}
+.main{
+    position:relative;
+    width: auto;
+    height: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    font-weight:100;
+    font-size: 20px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    color: #ada9a9;
+}
+.main__div__ingresar{
+    position:relative;
+    margin: 0px;
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    width:auto;
+    height: 0px;
+    background: #222222;
+    opacity: 0.6;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 27px;
+    line-height: 40px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    color: #ffffff;
+}
+.main__div__fotos{
+    position:relative;
+    border-radius: 25px;
+    margin: 0 30px;
+    width: auto;
+    height: auto;
+    opacity: 0.9;
+    border: 1px solid #000000;
+    box-sizing:border-box;
+    align-items: center;
+    align-content: center;
+}
+.main__div__fotos--autofit{
+    position:relative;
+    margin: 0px;
+    max-width: 100%;
+    height: auto;
+    box-sizing:border-box;
+    align-items: center;
+    align-content: center;
+}
+.footer{
+    position: relative;
+    margin: 0px;
+    padding: 0;
+    width: auto;
+    height: 69px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background: #F7F7F7;
+    opacity: 0.3;
+    border-radius: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 80px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    color: #000000;
+}
+.footer__logos{
+    position:relative;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    align-content: center;
+}
