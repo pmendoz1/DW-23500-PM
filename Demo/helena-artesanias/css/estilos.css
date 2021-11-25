@@ -1,5 +1,7 @@
 /* Elementos HTML */
 body{
+    display: grid;
+    height: 100vh;
     margin:0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-image: url("../img/fondo-main.png");
