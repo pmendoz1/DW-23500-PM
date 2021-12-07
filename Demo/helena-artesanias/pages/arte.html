@@ -8,48 +8,71 @@
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body style="background-image: url(../img/fondo-arte.png);" >
-    <header>
-        <nav class="header__menu">
-            <ul>
-                <li>
-                    <a href="../index.html">INICIO</a>
-                </li>
-                <li>
-                    <a href="../pages/home.html">NOSOTROS</a>
-                </li>
-                <li>
-                    <a href="../pages/arte.html">ARTE</a>
-                </li>
-                <li>
-                    <a href="../pages/taller.html">TALLER</a>
-                </li>
-                <li>
-                    <a href="../pages/contacto.html">CONTACTO</a>
-                </li>
-            </ul>     
-        </nav>        
-    </header>
-    <main class="main">
-            <h2>ALGUNOS DE NUESTROS TRABAJOS</h2>
-            <div id="arte">
-            <img class="main__div__fotos" src="../img/arte1.PNG" alt="">
-            <img class="main__div__fotos" src="../img/arte2.PNG" alt="">
-            <img class="main__div__fotos" src="../img/arte3.PNG" alt="">
-            <br>
-            <img class="main__div__fotos" src="../img/arte4.PNG" alt="">
-            <img class="main__div__fotos" src="../img/arte5.PNG" alt="">
-            <img class="main__div__fotos" src="../img/arte6.PNG" alt="">
-        </div>
-    </main>
-    <footer class="footer">
-        <img class="footer__logos" src="../img/logo-insta-transparent.png" alt="">
-        <span>HELENA.ARTESANIAS</span>
-        <img class="footer__logos" src="../img/logo-mail-transparent.png" alt="">
-        <span>contacto@helena-artesanias.com.ar</span>
-        <img class="footer__logos" src="../img/logo-point-transparent.png" alt="">
-        <span>Villa Bosch - Buenos Aires</span>
-        <span class="footer__text--left">Helena Artesanias ©</span>
-        <span class="footer__text--left">Todos los derechos reservados</span>
-    </footer>
+    <div id="plantilla">
+        <header>
+            <nav class="header__menu">
+                <ul>
+                    <li>
+                        <a href="../index.html">INICIO</a>
+                    </li>
+                    <li>
+                        <a href="../pages/home.html">NOSOTROS</a>
+                    </li>
+                    <li>
+                        <a href="../pages/arte.html">ARTE</a>
+                    </li>
+                    <li>
+                        <a href="../pages/taller.html">TALLER</a>
+                    </li>
+                    <li>
+                        <a href="../pages/contacto.html">CONTACTO</a>
+                    </li>
+                </ul>      
+            </nav>
+        </header>
+        <main class="main">
+                <h2>ALGUNOS DE NUESTROS TRABAJOS</h2>
+                <div id="main__grid">
+                    <div>
+                        <img class="main__div__fotos" src="../img/arte1.PNG" alt="">
+                        <img class="main__div__fotos" src="../img/arte4.PNG" alt="">
+                    </div>
+                    <div>
+                        <img class="main__div__fotos" src="../img/arte2.PNG" alt="">
+                        <img class="main__div__fotos" src="../img/arte5.PNG" alt="">
+                    </div>
+                    <div>
+                        <img class="main__div__fotos" src="../img/arte3.PNG" alt="">
+                        <img class="main__div__fotos" src="../img/arte6.PNG" alt="">
+                    </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div id="footer-outer-grid">
+                <div class="footer__item--right">
+                    <img class="footer__logos" src="../img/logo-insta-transparent.png" alt="">
+                </div>
+                <div class="footer__item--left">
+                    <span>HELENA.ARTESANIAS</span>
+                </div>
+                <div class="footer__item--right">
+                    <img class="footer__logos" src="../img/logo-mail-transparent.png" alt="">
+                </div>
+                <div class="footer__item--left">
+                    <span>contacto@helena-artesanias.com.ar</span>
+                </div>
+                <div class="footer__item--right">
+                    <img class="footer__logos" src="../img/logo-point-transparent.png" alt="">
+                </div>
+                <div class="footer__item--left">
+                    <span>Villa Bosch - Buenos Aires</span>
+                </div>
+                <div id="footer-inner-grid">
+                    <div><span>Helena Artesanias ©</span></div>
+                    <div><span>Todos los derechos reservados</span></div>
+                </div>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

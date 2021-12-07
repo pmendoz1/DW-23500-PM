@@ -1,11 +1,29 @@
-/* Elementos HTML */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400');
 body{
     display: grid;
     height: 100vh;
     margin:0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Montserrat, Verdana, Geneva, Tahoma, sans-serif;
     background-image: url("../img/fondo-main.png");
     background-size:cover
+}
+h1{
+    font-size: 3vmax;
+    margin: 1px;
+    font-style: italic;
+    font-weight: 300;
+}
+h2{
+    font-size: 2vmax;
+    margin: 1px;
+    font-style: normal;
+    font-weight: normal;
+}
+h3{
+    font-size: 1.5vmax;
+    margin: 1px;
+    font-style: normal;
+    font-weight: normal;
 }
 a:link{
     color: #E5E5E5;
@@ -28,28 +46,63 @@ nav ul{
 }
 nav ul li{
     display: inline;
-    margin: 0 60px;
+    margin: 5vmax;
+}
+header{
+    grid-area: header;
 }
 div{
     display: inline;
-    margin: 0 60px;
+    margin: 0 0px;
 }
-
-/* Definicion de Clases */
-
+#plantilla{
+    display: grid;
+    height: 100vh;
+    grid-template-areas:
+        "header header header header header"
+        "main main main main main"
+        "footer footer footer footer footer";
+    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+#footer-outer-grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    grid-gap: 0px;
+    height: 69px;
+    text-align: center;
+    align-content: center;
+}
+#footer-inner-grid{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 0px;
+    line-height: 0px;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+}
+#main__grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0px;
+    height: fit-content;
+    align-items: center;
+    text-align: center;
+    align-content: center;
+}
 .header__menu{
     position:relative;
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
     width:auto;
-    height: 43px;
+    height: fit-content;
     background: #602749;
     opacity: 0.3;
     border: 1px solid #000000;
     box-sizing: border-box;
     border-radius: 10px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 24px;
@@ -59,19 +112,37 @@ div{
     align-content: center;
     color: #E5E5E5;
 }
+.header__menu a{
+    font-size: 1.5vmax;
+}
 .main{
+    grid-area: main;
     position:relative;
-    width: auto;
-    height: auto;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-style: normal;
     font-weight:100;
     font-size: 20px;
-    line-height: 40px;
     align-items: center;
     text-align: center;
     align-content: center;
     color: #ada9a9;
+}
+.main__formulario{
+    position: relative;
+    display: flex;
+    margin-top: 4max;
+    margin-left: 4vmax;
+    margin-right: 4vmax;
+    margin-bottom: 4vmax;
+    padding: 10vmax;
+    width: auto;
+    height: auto;
+    background: #000000;
+    opacity: 0.4;
+    border: 1px solid #F57CFF;
+    box-sizing: border-box;
+    border-radius: 25px;
+    justify-content: center;
+    color: white;
 }
 .main__div__ingresar{
     position:relative;
@@ -79,18 +150,17 @@ div{
     padding: 10px;
     padding-left: 40px;
     padding-right: 40px;
-    width:auto;
+    width: auto;
     height: 0px;
     background: #222222;
     opacity: 0.6;
     border: 1px solid #000000;
     box-sizing: border-box;
     border-radius: 25px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-style: normal;
     font-weight: 300;
-    font-size: 27px;
-    line-height: 40px;
+    font-size: 1.5vmax;
+    line-height: 60px;
     align-items: center;
     text-align: center;
     align-content: center;
@@ -99,9 +169,8 @@ div{
 .main__div__fotos{
     position:relative;
     border-radius: 25px;
-    margin: 0 30px;
-    width: auto;
-    height: auto;
+    margin: auto;
+    max-width: 30vw;
     opacity: 0.9;
     border: 1px solid #000000;
     box-sizing:border-box;
@@ -118,30 +187,37 @@ div{
     align-content: center;
 }
 .footer{
+    grid-area: footer;
     position: relative;
     margin: 0px;
     padding: 0;
     width: auto;
-    height: 69px;
+    height: fit-content;
     margin-left: 20px;
     margin-right: 20px;
     background: #F7F7F7;
     opacity: 0.3;
     border-radius: 10px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
-    line-height: 80px;
-    align-items: center;
-    text-align: center;
-    align-content: center;
+    align-content: space-around;
     color: #000000;
 }
 .footer__logos{
     position:relative;
-    width: 40px;
-    height: 40px;
+    width: 3vmax;
+}
+.footer__item--left{
+    display: flex;
     align-items: center;
-    align-content: center;
+}
+.footer__item--right{
+    display: flex;
+    align-items:flex-end;
+    justify-items:right;
+    justify-content: right;
+}
+.footer span{
+    font-size: 1.2vmax;
 }
