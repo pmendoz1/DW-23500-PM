@@ -55,7 +55,8 @@ div{
     display: inline;
     margin: 0 0px;
 }
-#plantilla{
+@media(max-width: 2000px){
+    #plantilla{
     display: grid;
     height: 100vh;
     grid-template-areas:
@@ -64,6 +65,13 @@ div{
         "footer footer footer footer footer";
     grid-template-rows: 1fr 3fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+@media(max-width: 500px){
+    #plantilla{
+        display: flex;
+        flex-direction: column;
+    }
 }
 #footer-outer-grid{
     display: grid;
@@ -82,7 +90,8 @@ div{
     text-align: center;
     align-content: center;
 }
-#main__grid{
+@media(max-width: 2000px){
+    #main__grid{
     display: grid;
     grid-template-columns: auto auto auto;
     grid-gap: 0px;
@@ -90,6 +99,13 @@ div{
     align-items: center;
     text-align: center;
     align-content: center;
+    }
+}
+@media(max-width: 500px){
+    #main__grid{
+        display: flex;
+        flex-direction: column;
+    }
 }
 .header__menu{
     position:relative;
