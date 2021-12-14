@@ -1,0 +1,20 @@
+.gradiente{
+    background-image: linear-gradient(red, yellow);
+  }
+.boton {
+    float:left;
+    margin: 4em 1em;
+    width:120px;
+    height: 80px;
+    border: 2px solid blue;
+    background-color: violet;
+    line-height: 60px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-align: center;
+    transition: 1s ease-in-out;
+  }
+  .boton:hover {
+    transform: translate(15em,0) scale(2,2);
+    background-color: tomato;
+  }
