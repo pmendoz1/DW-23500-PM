@@ -107,6 +107,12 @@ div{
         flex-direction: column;
     }
 }
+.btn.btn-primary.btn-lg{
+    transition: 1s ease-in-out;
+}
+.btn.btn-primary.btn-lg:hover{
+    transform: scale(1.2,1.2);
+}
 .header__menu{
     position:relative;
     margin-top: 20px;
