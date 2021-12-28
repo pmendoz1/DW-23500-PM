@@ -178,10 +178,10 @@ div {
 }
 
 .header__menu {
-  position: relative;
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
+  position: relative;
   width: auto;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -207,6 +207,29 @@ div {
 
 .header__menu a {
   font-size: 1.5vmax;
+}
+
+.botones--grandes, .main__div__ingresar {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin: 0px;
+  padding: 0px;
+  padding-left: 1vmax;
+  padding-right: 1vmax;
+  width: auto;
+  height: 3vmax;
+  opacity: 0.6;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 25px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.5vmax;
+  line-height: 60px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .main {
@@ -248,28 +271,8 @@ div {
 }
 
 .main__div__ingresar {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  margin: 0px;
-  padding: 0px;
-  padding-left: 1vmax;
-  padding-right: 1vmax;
-  width: auto;
-  height: 3vmax;
   background: #222222;
-  opacity: 0.6;
   border: 1px solid #000000;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border-radius: 25px;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 1.5vmax;
-  line-height: 60px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   color: #ffffff;
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;

@@ -3,6 +3,15 @@
 $font-general: Montserrat, Verdana, Geneva, Tahoma, sans-serif;
 $display-desktop: grid;
 $display-mobile: flex;
+@mixin margenes($top, $left, $right) {
+    margin-top: $top;
+    margin-left: $left;
+    margin-right: $right;
+}
+$mapa: (
+    posicion: relative,
+    alineacion-texto: center
+);
 
 body{
     display: grid;
@@ -125,10 +134,8 @@ div{
     }
 }
 .header__menu{
-    position:relative;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    @include margenes(20px, 20px, 20px);
+    position: map-get($mapa, posicion);
     width:auto;
     height: fit-content;
     background: #602749;
@@ -141,14 +148,30 @@ div{
     font-size: 24px;
     line-height: 40px;
     align-items: center;
-    text-align: center;
+    text-align: map-get($mapa, alineacion-texto);
     align-content: center;
     color: #E5E5E5;
     & a{
         font-size: 1.5vmax;
     }
 }
-
+.botones--grandes{
+    display:inline-flex;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 1vmax;
+    padding-right: 1vmax;
+    width:auto;
+    height: 3vmax;
+    opacity: 0.6;
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.5vmax;
+    line-height: 60px;
+    align-items: center;
+}
 .main{
     grid-area: main;
     position:relative;
@@ -177,23 +200,9 @@ div{
         color: white;
     }
     &__div__ingresar{
-        display:inline-flex;
-        margin: 0px;
-        padding: 0px;
-        padding-left: 1vmax;
-        padding-right: 1vmax;
-        width:auto;
-        height: 3vmax;
+        @extend .botones--grandes;
         background: #222222;
-        opacity: 0.6;
         border: 1px solid #000000;
-        box-sizing: border-box;
-        border-radius: 25px;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 1.5vmax;
-        line-height: 60px;
-        align-items: center;
         color: #ffffff;
         transition: 1s ease-in-out;
     }
@@ -215,9 +224,6 @@ div{
         box-sizing:border-box;
     }
 }
-
-
-
 .footer{
     grid-area: footer;
     position: relative;
@@ -236,7 +242,6 @@ div{
     align-content: space-around;
     color: #000000;
     &__logos{
-        //position:relative;
         width: 3vmax;
     }
     &__item--left{
