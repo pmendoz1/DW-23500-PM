@@ -1,0 +1,40 @@
+.login-tienda{
+
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  width: 20%;
+  background: rgb(50, 104, 154);
+  color: white;
+  font-weight: 600;
+  margin-top: 10%;
+}
+.card {
+    height: 200px;
+    width: 170px;
+    margin: 20px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: center;
+  }
+.nombre-producto {
+  color: rgb(75, 118, 235);
+  font-weight: 800;
+}
+.card-precio {
+    font-weight: 500;
+    color: rgb(69, 69, 171);
+  }
+  .contenedor-tienda {
+    padding-top: 3%;
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-around;
+    background-color: rgb(205, 248, 255);
+    flex-wrap: wrap;
+  }

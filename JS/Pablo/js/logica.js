@@ -1,4 +1,35 @@
+//Llena arrayCryptos con fetch de coinranking.com vía CORS proxy
+fetch(`${proxyUrl}${baseUrl}`, { 
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': `${apiKey}`,
+      'Access-Control-Allow-Origin': "*"
+    }
+})
+.then((respuesta) => {
+    if(respuesta.ok) {
+        respuesta.json().then((consulta) => {
+            arrayCryptos = consulta.data.coins
+            console.log(arrayCantidadCryptos)
+            for(i=0;i<arrayCryptos.length;i++){
+                arrayCantidadCryptos[i].id = i
+                arrayCantidadCryptos[i].uuid = arrayCryptos[i].uuid;
+                arrayCantidadCryptos[i].symbol = arrayCryptos[i].symbol;
+                arrayCantidadCryptos[i].iconUrl = arrayCryptos[i].iconUrl;
+                arrayCantidadCryptos[i].cantidad = 0
+            }
+            console.log(arrayCryptos)
+            console.log(arrayCantidadCryptos)
+            console.log(arrayCantidadCryptos[2].id)
+        })
+    }
+})
+.catch((error) => {
+    console.log(error)
+})
 
+// Genera cotizaciones random para las Cryptos
 function calculaTransaccion(primerNumero, segundoNumero, operacion) {
     comisionTransaccion = (segundoNumero * comision).toFixed(2);
     switch (operacion) {
@@ -10,74 +41,100 @@ function calculaTransaccion(primerNumero, segundoNumero, operacion) {
             return 0;
     }
 }
+// Se guardan cálculos de compra, ventas de cryptos y movimientos de billetera por cada transaccion realizada.
+function guardaCalculo() {
+    arrayCantidadCryptos[idCrypto].cantidad = calculaTransaccion((JSON.parse(localStorage.getItem("arrayCantidadCryptos")))[idCrypto].cantidad, cantidadIngresada, operacion);
+    cantidadBilletera = calculaTransaccion(cantidadBilletera, (cantidadIngresada * arrayCryptos[idCrypto].price), operacionBilletera) - comisionTransaccion;
+    localStorage.setItem("arrayCantidadCryptos", JSON.stringify(arrayCantidadCryptos));
+}
+// Se renderiza página, de acuerdo a la lógica aplicada.
 function renderizaPagina(resultado) {
+    contenedorCrypto.innerHTML = '';
     switch (resultado) {
         case "compraOK":
-            contenedorCrypto.innerHTML = '';
-            tituloTransaccion.innerHTML = `La compra fue realizada con éxito. La comisión por esta transacción fue de ${comisionTransaccion} pesos. Usted dispone de ${arrayCantidadCryptos[idCrypto].cantidad} ${tipoCrypto.toUpperCase()} y ${cantidadBilletera} pesos en su saldo`;
-            contenedorCrypto.append(tituloTransaccion, buttonTransaccion);
-            buttonTransaccion.onclick = () => {decreceTransacciones()};
+            Swal.fire({
+                title: '¡Felicitaciones!',
+                text: `La compra fue realizada con éxito. La comisión por esta transacción fue de ${comisionTransaccion} pesos. Usted dispone de ${arrayCantidadCryptos[idCrypto].cantidad} ${tipoCrypto.toUpperCase()} y ${cantidadBilletera.toFixed(2)} pesos en su saldo`,
+                icon: 'success',
+                confirmButtonColor: "#800080",
+                timer:0,
+            })
+            decreceTransacciones();
             break;
         case "compraNoOK":
-            contenedorCrypto.innerHTML = '';
-            tituloTransaccion.innerHTML = `No dispone de suficiente dinero en billetera.`;
-            contenedorCrypto.append(tituloTransaccion, buttonTransaccion);
-            buttonTransaccion.onclick = () => {bucleTransaccion()};
+            Swal.fire({
+                title: '¡Ops!',
+                text: 'No dispone de suficiente dinero en billetera.',
+                icon: 'error',
+                confirmButtonColor: "#800080",
+                timer:0,
+            })
+            bucleTransaccion();
             break;
         case "ventaOK":
-            contenedorCrypto.innerHTML = '';
-            tituloTransaccion.innerHTML = `La venta fue realizada con éxito. La comisión por esta transacción fue de ${comisionTransaccion} pesos. Usted dispone de ${arrayCantidadCryptos[idCrypto].cantidad} ${tipoCrypto.toUpperCase()} y ${cantidadBilletera} pesos en su saldo`;
-            contenedorCrypto.append(tituloTransaccion, buttonTransaccion);
-            buttonTransaccion.onclick = () => {decreceTransacciones()};
+            Swal.fire({
+                title: '¡Felicitaciones!',
+                text: `La venta fue realizada con éxito. La comisión por esta transacción fue de ${comisionTransaccion} pesos. Usted dispone de ${arrayCantidadCryptos[idCrypto].cantidad} ${tipoCrypto.toUpperCase()} y ${cantidadBilletera.toFixed(2)} pesos en su saldo`,
+                icon: 'success',
+                confirmButtonColor: "#800080",
+                timer:0,
+            })
+            decreceTransacciones();
             break;
         case "ventaNoOK":
-            contenedorCrypto.innerHTML = '';
-            tituloTransaccion.innerHTML = `No tiene suficientes ${tipoCrypto} para vender.`;
-            contenedorCrypto.append(tituloTransaccion, buttonTransaccion);
-            buttonTransaccion.onclick = () => {bucleTransaccion()};
+            Swal.fire({
+                title: '¡Ops!',
+                text: `No tiene suficientes ${tipoCrypto} para vender.`,
+                icon: 'warning',
+                confirmButtonColor: "#800080",
+                timer:0,
+            })
+            bucleTransaccion();
             break;
         case "ingresoBilleteraOK":
-            contenedorCrypto.innerHTML = '';
-            tituloTransaccion.innerHTML = `Dinero ingresado con éxito. La comisión por esta transacción fue de ${comisionTransaccion} pesos. Usted dispone de ${cantidadBilletera} pesos en su billetera`;
-            contenedorCrypto.append(tituloTransaccion, buttonTransaccion);
-            buttonTransaccion.onclick = () => {decreceTransacciones()};
+            Swal.fire({
+                title: '¡Felicitaciones!',
+                text: `Dinero ingresado con éxito. La comisión por esta transacción fue de ${comisionTransaccion} pesos. Usted dispone de ${cantidadBilletera.toFixed(2)} pesos en su billetera`,
+                icon: 'success',
+                confirmButtonColor: "#800080",
+                timer:0,
+            })
+            decreceTransacciones();
             break;
         case "retiroBilleteraOK":
-            contenedorCrypto.innerHTML = '';
-            tituloTransaccion.innerHTML = `Dinero retirado con éxito. La comisión por esta transacción fue de ${comisionTransaccion} pesos. Usted dispone de ${cantidadBilletera} pesos en su billetera`;
-            contenedorCrypto.append(tituloTransaccion, buttonTransaccion);
-            buttonTransaccion.onclick = () => {decreceTransacciones()};
+            Swal.fire({
+                title: '¡Felicitaciones!',
+                text: `Dinero retirado con éxito. La comisión por esta transacción fue de ${comisionTransaccion} pesos. Usted dispone de ${cantidadBilletera.toFixed(2)} pesos en su billetera`,
+                icon: 'success',
+                confirmButtonColor: "#800080",
+                timer:0,
+            })
+            decreceTransacciones();
             break;
         case "retiroBilleteraNoOK":
-            contenedorCrypto.innerHTML = '';
-            tituloTransaccion.innerHTML = `No tiene fondos suficientes. Ustede dispone de ${cantidadBilletera} pesos.`;
-            contenedorCrypto.append(tituloTransaccion, buttonTransaccion);
-            buttonTransaccion.onclick = () => {decreceTransacciones()};
+            Swal.fire({
+                title: '¡Ops!',
+                text: `No tiene fondos suficientes. Ustede dispone de ${cantidadBilletera.toFixed(2)} pesos.`,
+                icon: 'warning',
+                confirmButtonColor: "#800080",
+                timer:0,
+            })
+            bucleTransaccion();
             break;
-        case "noTransaccion":
-            contenedorCrypto.innerHTML = '';
-            tituloTransaccion.innerHTML = `No seleccionó tipo de transacción.`;
-            contenedorCrypto.append(tituloTransaccion, buttonTransaccion);
-            buttonTransaccion.onclick = () => {bucleTransaccion()};
+        case "transaccionesEjecutadas":
+            tituloTransaccion.innerHTML = `Todas las transacciones fueron ejecutadas. Muchas gracias por utilizar nuestro servicio`;
+            buttonVolver.innerText = "Volver a empezar";
+            buttonVolver.href = "../";
+            contenedorCrypto.append(tituloTransaccion, buttonVolver);
     }
 }
-
-function transaccionesEjecutadas () {
-    tituloTransaccion.innerHTML = `Todas las transacciones fueron ejecutadas. Muchas gracias por utilizar nuestro servicio`;
-    contenedorCrypto.innerHTML = '';
-    contenedorCrypto.append(tituloTransaccion);
-}
-
+// Se descuentan transacciones a realizar
 function decreceTransacciones() {
     numeroDeTransacciones--
-    numeroDeTransacciones > 0 ? bucleTransaccion() : transaccionesEjecutadas()
+    numeroDeTransacciones > 0 ? bucleTransaccion() : renderizaPagina("transaccionesEjecutadas");
 }
 
-if (!localStorage.getItem('arrayCantidadCryptos')) localStorage.setItem('arrayCantidadCryptos', JSON.stringify(arrayCantidadCryptos));
 
-arrayCantidadCryptos = (JSON.parse(localStorage.getItem("arrayCantidadCryptos")));
-let cantidadETH = arrayCantidadCryptos[0].cantidad
-let cantidadBTC = arrayCantidadCryptos[1].cantidad
 
 //Mostramos página de cantidad de transacciones.
 tituloTransaccion.innerHTML = "Ingrese el número de transacciones a realizar:"
@@ -87,118 +144,150 @@ buttonTransaccion.onclick = () => {
     inputTransaccion.value = '';
     bucleTransaccion();
 }
-//Solicitamos tipo de transacción para análisis.
+//Ejecutamos transacciones de acuerdo a la opción seleccionada.
 function bucleTransaccion() {
-    tituloTransaccion.innerHTML = "Qué tipo de transacción quiere realizar?.<br>Compra: 1<br>Venta: 2 <br>Ingresar dinero: 3 <br>Retirar dinero: 4";
-    contenedorCrypto.append(tituloTransaccion, inputTransaccion, buttonTransaccion);
-    buttonTransaccion.onclick = () => {
-        tipoTransaccion = inputTransaccion.value
-        inputTransaccion.value = '';
-    //Analizamos el tipo de transacción ingresada y mostramos cryptos disponibles.
-    switch(tipoTransaccion){
-        case "1":
-            operacion = "+"
-            tituloTransaccion.innerHTML = `<h1> Indique crypto y cantidad a comprar.</h1>
-            <h2>A continuación cryptos disponibles y su cotización:</h2>
-            <p>${arrayCryptos[0].crypto}  ${arrayCryptos[0].cotizacion}</p>
-            <p>${arrayCryptos[1].crypto}  ${arrayCryptos[1].cotizacion}</p>`;
-            contenedorCrypto.append(tituloTransaccion, inputTransaccion, inputCantidad, buttonTransaccion);
-            buttonTransaccion.onclick = () => {
-                tipoCrypto = inputTransaccion.value
-                cantidadIngresada = parseInt(inputCantidad.value);
-                inputTransaccion.value = '';
-                inputCantidad.value = '';
-                //Analizamos si para la crypto seleccionada tenemos suficiente dinero y mostramos opciones de acuerdo al análisis.
-                if(tipoCrypto.toUpperCase() === "ETH" && cantidadBilletera >= (cantidadIngresada * cotizacionETH.cotizacion)){
-                    idCrypto = 0;
-                    cantidadETH = calculaTransaccion(cantidadETH, cantidadIngresada, operacion);
-                    arrayCantidadCryptos[0].cantidad = (JSON.parse(localStorage.getItem("arrayCantidadCryptos")))[0].cantidad + cantidadIngresada;
-                    localStorage.setItem("arrayCantidadCryptos", JSON.stringify(arrayCantidadCryptos));
-                    cantidadBilletera = calculaTransaccion(cantidadBilletera, (cantidadIngresada * cotizacionETH.cotizacion), "-") - comisionTransaccion;
-                    renderizaPagina("compraOK");
-                }else if(tipoCrypto.toUpperCase() === "BTC" && cantidadBilletera >= (cantidadIngresada * cotizacionBTC.cotizacion)){
-                    idCrypto = 1;
-                    cantidadBTC = calculaTransaccion(cantidadBTC, cantidadIngresada, operacion);
-                    arrayCantidadCryptos[1].cantidad = (JSON.parse(localStorage.getItem("arrayCantidadCryptos")))[1].cantidad + cantidadIngresada;
-                    localStorage.setItem("arrayCantidadCryptos", JSON.stringify(arrayCantidadCryptos));
-                    cantidadBilletera = calculaTransaccion(cantidadBilletera, (cantidadIngresada * cotizacionBTC.cotizacion), "-") - comisionTransaccion;
-                    renderizaPagina("compraOK");
-                }else{
-                    renderizaPagina("compraNoOK");
-                }
+    if (!localStorage.getItem('arrayCantidadCryptos')) localStorage.setItem('arrayCantidadCryptos', JSON.stringify(arrayCantidadCryptos));
+    arrayCantidadCryptos = (JSON.parse(localStorage.getItem("arrayCantidadCryptos")));
+    contenedorCrypto.innerHTML = '';
+    tituloTransaccion.innerHTML = "Qué tipo de transacción quiere realizar?";
+    contenedorCrypto.append(tituloTransaccion, buttonComprar, buttonVender, buttonIngresoDinero, buttonRetiraDinero);
+    buttonComprar.onclick = () => {
+
+
+        const renderizarTienda = () => {
+            contenedorCrypto.innerHTML = '';
+            for (const producto of arrayCryptos) {
+              //Creamos los elementos HTML
+              const divProducto = document.createElement('div');
+            //   const imgProducto = document.createElement('img');
+              const nombreProducto = document.createElement('h2');
+              const precioProducto = document.createElement('h3');
+              const cantidadCrypto = document.createElement('input')
+              const botonComprar = document.createElement('button');
+          
+              //Les agregamos los estilos asignandoles clases de css
+              divProducto.className = 'card';
+            //   imgProducto.className = 'card-img-top';
+              nombreProducto.className = 'nombre-producto';
+              precioProducto.className = 'card-precio';
+              cantidadCrypto.className = 'form-control'
+              botonComprar.className = 'btn btn-primary';
+          
+              //Le agregamos el contenido a los elementos creados y el id a los que vamos a necesitar despues
+            //   imgProducto.src = producto.img;
+              nombreProducto.append(producto.symbol);
+              precioProducto.append(`$ ${parseInt(producto.price).toFixed(2)}`);
+              botonComprar.append('Comprar');
+              botonComprar.id = producto.uuid;
+          
+              botonComprar.onclick = () => {
+                const productoComprado = arrayCantidadCryptos.find(producto => producto.uuid === botonComprar.id);
+                // let foundIndex = arrayCantidadCryptos.findIndex(x => x === "symbol: producto.symbol)
+                console.log(productoComprado);
+                arrayCantidadCryptos[productoComprado.id].cantidad = parseInt(cantidadCrypto.value);
+                console.log(arrayCantidadCryptos)
+                cantidadCrypto.value = ''
+                
+
+                // carrito.push({ nombre: productoComprado.modelo, precio: productoComprado.precio })
+                // localStorage.setItem("carrito", JSON.stringify(carrito))
+              }
+            //Agregamos los elementos creados a su elemento contenedor que es divProducto
+                divProducto.append(nombreProducto, precioProducto, cantidadCrypto, botonComprar);
+    
+            //Le agregamos al contenedor de la tienda cada uno de los divProducto
+                contenedorCrypto.append(divProducto);
             }
-            break;     
-        case "2":
-            operacion = "-"
-            tituloTransaccion.innerHTML = `Indique crypto y cantidad a vender.<br> A continuación cryptos disponibles y su cotización:<br>`+ JSON.stringify(arrayCryptos);
-            contenedorCrypto.append(tituloTransaccion, inputTransaccion, inputCantidad, buttonTransaccion);
-            buttonTransaccion.onclick = () => {
-                tipoCrypto = inputTransaccion.value
-                cantidadIngresada = parseInt(inputCantidad.value);
-                inputTransaccion.value = '';
-                inputCantidad.value = '';
-                //analizamos crypto sleccionada, si tenemos suficientes para vender y sumamos cantidad vendida a billetera.
-                if(tipoCrypto.toUpperCase() === "ETH" && cantidadETH >= cantidadIngresada){
-                    idCrypto = 0;
-                    cantidadETH = calculaTransaccion(cantidadETH, cantidadIngresada, operacion);
-                    arrayCantidadCryptos[0].cantidad = (JSON.parse(localStorage.getItem("arrayCantidadCryptos")))[0].cantidad - cantidadIngresada;
-                    localStorage.setItem("arrayCantidadCryptos", JSON.stringify(arrayCantidadCryptos));
-                    cantidadBilletera = calculaTransaccion(cantidadBilletera, (cantidadIngresada * cotizacionETH.cotizacion), "+") - comisionTransaccion;
-                    renderizaPagina("ventaOK");
-                }else if(tipoCrypto.toUpperCase() === "BTC" && cantidadBTC >= cantidadIngresada){
-                    idCrypto = 1
-                    cantidadBTC = calculaTransaccion(cantidadBTC, cantidadIngresada, operacion);
-                    arrayCantidadCryptos[1].cantidad = (JSON.parse(localStorage.getItem("arrayCantidadCryptos")))[1].cantidad - cantidadIngresada;
-                    localStorage.setItem("arrayCantidadCryptos", JSON.stringify(arrayCantidadCryptos));
-                    cantidadBilletera = calculaTransaccion(cantidadBilletera, (cantidadIngresada * cotizacionBTC.cotizacion), "+") - comisionTransaccion;
-                    renderizaPagina("ventaOK");
-                }else{
-                    renderizaPagina("ventaNoOK");
-                }
-            }
-            break;
-        case "3":
-            operacion = "+"
-            tituloTransaccion.innerHTML = `Cuánto dinero desea ingresar?`;
-            contenedorCrypto.removeChild(inputTransaccion);
-            contenedorCrypto.append(tituloTransaccion, inputCantidad, buttonTransaccion);
-            buttonTransaccion.onclick = () => {
-                cantidadIngresada = parseInt(inputCantidad.value);
-                inputCantidad.value = '';
-                cantidadBilletera = calculaTransaccion(cantidadBilletera, cantidadIngresada, operacion) - comisionTransaccion;
-                renderizaPagina("ingresoBilleteraOK")
-            }
-            break;
-        case "4":
-            operacion = "-"
-            tituloTransaccion.innerHTML = `Cuánto dinero desea retirar?`;
-            contenedorCrypto.removeChild(inputTransaccion);
-            contenedorCrypto.append(tituloTransaccion, inputCantidad, buttonTransaccion);
-            buttonTransaccion.onclick = () => {
-                cantidadIngresada = parseInt(inputCantidad.value);
-                inputCantidad.value = '';
-                if(cantidadBilletera >= cantidadIngresada){
-                    cantidadBilletera = calculaTransaccion(cantidadBilletera, cantidadIngresada, operacion) - comisionTransaccion;
-                    renderizaPagina("retiroBilleteraOK");
-                }else{
-                    renderizaPagina("retiroBilleteraNoOK");
-                }
-            }
-            break;      
-        default:
-            renderizaPagina("noTransaccion");
+        }
+        renderizarTienda();
+    }
+
+
+
+    //     operacion = "+"
+    //     operacionBilletera = "-"
+    //     contenedorCrypto.innerHTML = '';
+    //     tituloTransaccion.innerHTML = `<h1> Indique crypto y cantidad a comprar.</h1>
+    //     <h2>A continuación cryptos disponibles y su cotización:</h2>
+    //     <p>${arrayCryptos[1].symbol}:  ${parseInt(arrayCryptos[1].price).toFixed(2)}</p>
+    //     <p>${arrayCryptos[0].symbol}:  ${parseInt(arrayCryptos[0].price).toFixed(2)}</p>`;
+    //     contenedorCrypto.append(tituloTransaccion, inputTransaccion, inputCantidad, buttonTransaccion);
+    //     buttonTransaccion.onclick = () => {
+    //         tipoCrypto = inputTransaccion.value
+    //         cantidadIngresada = parseInt(inputCantidad.value);
+    //         inputTransaccion.value = '';
+    //         inputCantidad.value = '';
+    //         //Analizamos si para la crypto seleccionada tenemos suficiente dinero y mostramos opciones de acuerdo al análisis.
+    //         if(tipoCrypto.toUpperCase() === "ETH" && cantidadBilletera >= (cantidadIngresada * arrayCryptos[1].price)){
+    //             idCrypto = 1;
+    //             guardaCalculo();
+    //             renderizaPagina("compraOK");
+    //         }else if(tipoCrypto.toUpperCase() === "BTC" && cantidadBilletera >= (cantidadIngresada * arrayCryptos[0].price)){
+    //             idCrypto = 0;
+    //             guardaCalculo();
+    //             renderizaPagina("compraOK");
+    //         }else{
+    //             renderizaPagina("compraNoOK");
+    //         }
+    //     }
+    // }
+    buttonVender.onclick = () => {
+        operacion = "-"
+        operacionBilletera = "+"
+        contenedorCrypto.innerHTML = '';
+        tituloTransaccion.innerHTML = `<h1> Indique crypto y cantidad a vender.</h1>
+        <h2>A continuación cryptos disponibles y su cotización:</h2>
+        <p>${arrayCryptos[1].symbol}:  ${parseInt(arrayCryptos[1].price).toFixed(2)}</p>
+        <p>${arrayCryptos[0].symbol}:  ${parseInt(arrayCryptos[0].price).toFixed(2)}</p>`;
+        contenedorCrypto.append(tituloTransaccion, inputTransaccion, inputCantidad, buttonTransaccion);
+        buttonTransaccion.onclick = () => {
+            tipoCrypto = inputTransaccion.value
+            cantidadIngresada = parseInt(inputCantidad.value);
+            inputTransaccion.value = '';
+            inputCantidad.value = '';
+            //analizamos crypto sleccionada, si tenemos suficientes para vender y sumamos cantidad vendida a billetera.
+            if(tipoCrypto.toUpperCase() === "ETH" && arrayCantidadCryptos[1].cantidad >= cantidadIngresada){
+                idCrypto = 1;
+                guardaCalculo();
+                renderizaPagina("ventaOK");
+            }else if(tipoCrypto.toUpperCase() === "BTC" && arrayCantidadCryptos[0].cantidad >= cantidadIngresada){
+                idCrypto = 0
+                guardaCalculo();
+                renderizaPagina("ventaOK");
+            }else{
+                renderizaPagina("ventaNoOK");
             }
         }
     }
-
-// for(let i = 0; i < numeroDeTransacciones; i++){
-//     }
-//     //alert("Todas las transacciones fueron ejecutadas. Muchas gracias por utilizar nuestro servicio");
-//     // tituloTransaccion.innerHTML = `Todas las transacciones fueron ejecutadas. Muchas gracias por utilizar nuestro servicio`;
-//     // contenedorCrypto.removeChild(inputTransaccion);
-//     // contenedorCrypto.removeChild(inputCantidad);
-//     // contenedorCrypto.removeChild(buttonTransaccion);
-//     // contenedorCrypto.append(tituloTransaccion);
+    buttonIngresoDinero.onclick = () => {
+        operacionBilletera = "+"
+        contenedorCrypto.innerHTML = '';
+        tituloTransaccion.innerHTML = `Cuánto dinero desea ingresar?`;
+        contenedorCrypto.append(tituloTransaccion, inputCantidad, buttonTransaccion);
+        buttonTransaccion.onclick = () => {
+            cantidadIngresada = parseInt(inputCantidad.value);
+            inputCantidad.value = '';
+            cantidadBilletera = calculaTransaccion(cantidadBilletera, cantidadIngresada, operacionBilletera) - comisionTransaccion;
+            renderizaPagina("ingresoBilleteraOK")
+        }
+    }
+    buttonRetiraDinero.onclick = () => {
+        operacionBilletera = "-"
+        contenedorCrypto.innerHTML = '';
+        tituloTransaccion.innerHTML = `Cuánto dinero desea retirar?`;
+        contenedorCrypto.append(tituloTransaccion, inputCantidad, buttonTransaccion);
+        buttonTransaccion.onclick = () => {
+            cantidadIngresada = parseInt(inputCantidad.value);
+            inputCantidad.value = '';
+            if(cantidadBilletera >= cantidadIngresada){
+                cantidadBilletera = calculaTransaccion(cantidadBilletera, cantidadIngresada, operacionBilletera) - comisionTransaccion;
+                renderizaPagina("retiroBilleteraOK");
+            }else{
+                renderizaPagina("retiroBilleteraNoOK");
+            }
+        }
+    }
+    }
 
 
 
