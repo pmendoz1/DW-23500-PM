@@ -13,9 +13,10 @@
   margin-top: 10%;
 }
 .card {
-    height: 200px;
-    width: 170px;
+    height: 400px;
+    width: 200px;
     margin: 20px 0px;
+    border-radius: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,12 +30,23 @@
     font-weight: 500;
     color: rgb(69, 69, 171);
   }
-  .contenedor-tienda {
-    padding-top: 3%;
-    display: flex;
-    width: 100%;
-    height: auto;
-    justify-content: space-around;
-    background-color: rgb(205, 248, 255);
-    flex-wrap: wrap;
-  }
+.contenedor-tienda {
+  padding-top: 3%;
+  display: flex;
+  width: 100%;
+  height: auto;
+  border-radius: 25px;
+  justify-content: space-around;
+  background-color: rgb(197, 209, 150);
+  flex-wrap: wrap;
+}
+.contenedor-subtitulo {
+  padding-top: 3%;
+  display: flex;
+  width: 100%;
+  height: auto;
+  border-radius: 25px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color:red
+}

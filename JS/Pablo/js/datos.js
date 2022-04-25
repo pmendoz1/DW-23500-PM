@@ -1,65 +1,8 @@
-let arrayCantidadCryptos = [
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-  { id: '', uuid: "", symbol: "", iconUrl: "", cantidad: 0 },
-];
+let arrayCantidadCryptos = [];
+let arrayDatosUsuario = [
+  {id: 0, usuario: "PABLO", password:"12345", billetera: 0},
+  {id: 1, usuario: "JUAN", password:"54321", billetera: 0},
+]
 
 const baseUrl = "https://api.coinranking.com/v2/coins";
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
@@ -74,5 +17,6 @@ const comision = 0.05;
 let comisionTransaccion = 0;
 let operacion = "";
 let operacionBilletera = "";
-let cantidadBilletera = 700000;
+let cantidadBilletera = 0;
 let idCrypto = 0;
+let datosUsuario =[];
